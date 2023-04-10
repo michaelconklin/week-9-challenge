@@ -46,7 +46,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/generated-README.md', fileContent, err => {
+        fs.writeFile('./dist/generated-README.md', fileName, data, err => {
             if (err) {
                 reject(err);
                 return;
@@ -75,7 +75,7 @@ init()
     return generateMarkdown(readmeData);
 })
 .then(pageMD => {
-    return writeFile(pageMD);
+    return writeToFile(pageMD);
 })
 .then(writeFileResponse => {
     console.log(writeFileResponse.message);
